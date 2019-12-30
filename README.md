@@ -18,5 +18,6 @@ Semantic UI Landing Page by S G  - https://codepen.io/SG011/pen/gwdkOz
 # Setup
 You must install Python first and it’s package Django. Then you must use the command 
 >> python manage.py runserver 
+
 in the shell. Website will be open at localhost:8000.
 
