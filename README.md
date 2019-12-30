@@ -10,8 +10,11 @@ We created this prototype with Python’s Django Web Development Framework. Djan
 
 # Open Sourced Code Resources
 Semantic UI - https://github.com/Semantic-Org/Semantic-UI
+
 Jquery - https://github.com/jquery/jquery
+
 Card - https://github.com/jessepollak/card
+
 Semantic UI Landing Page by S G  - https://codepen.io/SG011/pen/gwdkOz
 
 
