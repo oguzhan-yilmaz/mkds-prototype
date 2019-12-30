@@ -1,0 +1,333 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <title>MKDS APP</title>
+  <link rel="stylesheet" href="{%static 'card.css'%}" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css" />
+  <style>
+    html,
+    body {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    *,
+    *:after,
+    *:before {
+      -webkit-box-sizing: border-box;
+      -moz-box-sizing: border-box;
+      box-sizing: border-box;
+    }
+
+    #home {
+      height: 100vh;
+      width: 100%;
+      margin: 0 auto;
+      background: url("http://randomwallpapers.net/gradient-blur-1920x1080-wallpaper403585.jpg") center no-repeat;
+      background-size: cover;
+    }
+
+    #main-logo {
+      padding-top: 2rem;
+    }
+
+    .center-items {
+      text-align: center;
+      margin: 0 auto;
+    }
+
+    #nav {
+      background: transparent;
+    }
+
+    .ui.menu .item img.logo {
+      margin-right: 1.5em;
+    }
+
+    .ui.menu .item>img:not(.ui) {
+      margin: 0 10px !important;
+    }
+
+    #rec-posts {
+      color: #111;
+      font-size: 40px;
+      font-size: 4rem;
+    }
+
+    svg {
+      width: 95%;
+      padding: 8px;
+      display: block;
+      text-transform: uppercase;
+      font-size: 22px;
+      margin: 0 auto
+    }
+
+    .text {
+      fill: none;
+      stroke-width: 1px;
+      stroke-linejoin: round;
+      stroke-dasharray: 70 330;
+      stroke-dashoffset: 0;
+      -webkit-animation: stroke 6s infinite linear;
+      animation: stroke 6s infinite linear
+    }
+
+    .text:nth-child(5n+1) {
+      stroke: #337ab7;
+      -webkit-animation-delay: -1.2s;
+      animation-delay: -1.2s
+    }
+
+    .text:nth-child(5n+2) {
+      stroke: #5cb85c;
+      -webkit-animation-delay: -2.4s;
+      animation-delay: -2.4s
+    }
+
+    .text:nth-child(5n+3) {
+      stroke: #5bc0de;
+      -webkit-animation-delay: -3.6s;
+      animation-delay: -3.6s
+    }
+
+    .text:nth-child(5n+4) {
+      stroke: #f0ad4e;
+      -webkit-animation-delay: -4.8s;
+      animation-delay: -4.8s
+    }
+
+    .text:nth-child(5n+5) {
+      stroke: #d9534f;
+      -webkit-animation-delay: -6s;
+      animation-delay: -6s
+    }
+
+    @-webkit-keyframes stroke {
+      100% {
+        stroke-dashoffset: -400
+      }
+    }
+
+    @keyframes stroke {
+      100% {
+        stroke-dashoffset: -400
+      }
+    }
+
+    .spacer {
+      padding: 3rem;
+    }
+
+    #post {
+      width: 75%;
+      margin: 0 12.5%;
+    }
+  </style>
+
+
+
+</head>
+
+<body>
+
+  <!-- NavBar -->
+  <div class="ui fixed inverted  menu">
+    <div class="container">
+
+      <a class="item" href="/"><b>Meal Kit Delivery System</b></a>
+      <a class="item" href="/">About Us</a>
+      <a class="item" href="/">Contact Us</a>
+    </div>
+    <div class="right menu">
+      {% if user.is_authenticated %}
+      <a href="{% url 'recipeList' %}" class="item" href="#">
+        <div class="ui primary button">Hello, {{ user.username }}!</div>
+      </a>
+      <a class="item" href="{% url 'logout' %}">
+        <div class="ui secondary button">Logout</div>
+      </a>
+      {% else %}
+      <a class="item" href="{% url 'login' %}">
+        <div class="ui secondary button">Login</div>
+      </a>
+      <a class="item" href="{% url 'signup' %} ">
+        <div class="ui primary button">SignUp</div>
+      </a>
+      {% endif %}
+    </div>
+  </div>
+
+
+  <div class="ui centered container grid" style="margin-top: 15px; margin-left: 1%; margin-right: 1%;">
+
+    {% block content %}
+
+
+    <svg viewBox="0 0 300 100" width="900" height="200" class="__web-inspector-hide-shortcut__">
+      <!-- Symbol -->
+      <symbol id="s-text">
+        <text text-anchor="middle" x="50%" y="50%" dy=".1em">
+          Meal KIt DelIvery System </text>
+      </symbol>
+      <!-- Duplicate symbols -->
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#s-text" class="text"></use>
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#s-text" class="text"></use>
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#s-text" class="text"></use>
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#s-text" class="text"></use>
+      <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#s-text" class="text"></use>
+    </svg>
+
+    <div class="ui container">
+      <div class="center-items">
+        <div class="ui search">
+          <div class="ui fluid icon input">
+            <input class="prompt" type="text" placeholder="Search Recipes...">
+            <i class="search icon"></i>
+          </div>
+          <div class="results"></div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <a class="item" href="{% url 'recipeList' %}">
+        <button class="fluid ui teal button" style="margin-top: 50px;">Our Special Recipes</button>
+      </a>
+    </div>
+    <div class="ui container" style="margin-top: 200px;">
+      <h2 class="ui center aligned header"> Our Customer Reviews </h2>
+
+      <div class="ui four cards">
+
+        <div class="ui card">
+          <div class="content">
+            <div class="center aligned header">
+              <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/jenny.jpg">
+              Jenny Hess
+            </div>
+            <div class="ui divider"></div>
+            <div class="center aligned description">
+              <p>What I most love about MKDS is that their recipes are really great. You can easily follow, which is
+                pretty valuable for people that never cooked before.</p>
+            </div>
+          </div>
+          <div class="extra">
+            Rating:
+            <div class="ui star rating" data-rating="4"></div>
+          </div>
+        </div>
+        <div class="ui card">
+          <div class="content">
+            <div class="center aligned header">
+              <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/matt.jpg">
+              Matt Steward
+            </div>
+            <div class="ui divider"></div>
+            <div class="center aligned description">
+              <p>I think MKDS is a great startup. It has the right priorities in mind: people and health. So many
+                families can start to cook, and avoid junkfood easily. That's a great accomplishment.</p>
+            </div>
+          </div>
+          <div class="extra">
+            Rating:
+            <div class="ui star rating" data-rating="4"></div>
+          </div>
+        </div>
+        <div class="ui card">
+          <div class="content">
+            <div class="center aligned header">
+              <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/veronika.jpg">
+              Christina Brown
+            </div>
+            <div class="ui divider"></div>
+            <div class="center aligned description">
+              <p>I am really happy that if found out that I don't have to think hours and hours about what I'm going
+                to cook for dinner. MKDS has really changed my life for the better.</p>
+            </div>
+          </div>
+          <div class="extra">
+            Rating:
+            <div class="ui star rating" data-rating="4"></div>
+          </div>
+        </div>
+
+        <div class="ui card">
+          <div class="content">
+            <div class="center aligned header">
+              <img class="ui avatar image" src="https://semantic-ui.com/images/avatar/small/helen.jpg">
+              Elyse McLaren
+            </div>
+            <div class="ui divider"></div>
+            <div class="center aligned description">
+              <p>You have no idea how much I saved since I started ordering MKDS. I'm in a more joyful era of my
+                life thanks to MKDS.</p>
+            </div>
+          </div>
+          <div class="extra">
+            Rating:
+            <div class="ui star rating" data-rating="3"></div>
+          </div>
+        </div>
+
+
+
+
+      </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {% endblock %}
+  </div>
+  <script src="{% static 'card.js' %}"></script>
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.js"></script>
+  <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script src="{%static 'jquery.card.js'%}"></script>
+  <script>
+    $(document).ready(function () {
+      // All your normal JS code goes in here
+      $(".rating").rating();
+    });
+
+    $('.ui.checkbox').checkbox();
+  </script>
+
+  {% block script_tag %}
+
+  {% endblock %}
+</body>
+
+</html>

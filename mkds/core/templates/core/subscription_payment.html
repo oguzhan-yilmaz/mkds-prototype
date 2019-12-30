@@ -1,0 +1,64 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+<div class="ui compact  segment" style="margin-top: 10px;">
+    <div class="centered row">
+        <h2 class="ui centered header">Please fill your information to continue</h2>
+        <div class="ui divider"></div>
+    </div>
+
+    <div class="centered row">
+        <div class="card-wrapper">
+        </div>
+        <div class="ui divider"></div>
+    </div>
+    <div class="centered row">
+        <form name="form" class="ui form" action="">
+            <h4 class="ui  header">Billing Information</h4>
+            <div class="field">
+                <input placeholder="Full name" type="text" name="name">
+            </div>
+            <div class="fields">
+                <div class="seven wide field">
+                    <label>Card Number</label>
+                    <input placeholder="Card number" type="tel" name="number">
+                </div>
+                <div class="six wide field">
+                    <label>Expiration</label>
+
+                    <div class="field">
+                        <input placeholder="MM/YY" type="tel" name="expiry">
+                    </div>
+                </div>
+                <div class="three wide field">
+                    <label>CVC</label>
+                    <input placeholder="CVC" type="number" name="cvc">
+                </div>
+
+            </div>
+        </form>
+
+
+    </div>
+    <div class="row">
+        <a href="/" class="ui right floated primary button">Continue</a>
+
+    </div>
+
+</div>
+{% endblock %}
+
+
+
+
+{% block script_tag %}
+
+<script>
+    $('form').card({
+        // a selector or DOM element for the container
+        // where you want the card to appear
+        container: '.card-wrapper', // *required*
+
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+
+
+
+<div class="ui left aligned container" style="width: 500px;margin-top: 10px;">
+    <div class="row" style="font-size: 15pt;">
+        {% if not submitted %}
+        <h2 class="ui header">Choose from our special recipes
+
+            <div class="sub header">..and maybe try different things</div>
+        </h2>
+        {% endif %}
+    </div>
+    <div class="left aligned row" style="font-size: 14pt;">
+
+
+        {% if submitted %}
+        <div class="ui positive message" style="margin-top: 10px;">
+            <i class="close icon"></i>
+            <div class="header">
+                We've got your order.
+            </div>
+            <p>We will send you your order when it's ready. </p>
+            <a href="/" class="ui primary button">
+                Go to Homepage
+            </a>
+        </div>
+
+        {% else %}
+        <form method="post" class="ui  form" action="{%url 'recipe_select' %}">
+            {% csrf_token %}
+
+            <div class="fields">
+
+
+            </div>
+            {% for field in form %}
+            <div class="field">
+                <div class="ui test toggle checkbox">
+                    <input type="checkbox" style="width: 15px;">
+                    <label>{{ field }}</label>
+                </div>
+
+            </div>
+
+
+
+
+            {% endfor %}
+            <button id="confirmbutton" class="ui primary right float button" type="submit">Confirm</button>
+        </form>
+        {% endif %}
+
+    </div>
+    {% endblock %}
+

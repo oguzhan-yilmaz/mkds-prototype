@@ -1,0 +1,37 @@
+{% extends "core/base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="twelve wide column">
+        <h1 class="ui header">Our Special Recipes
+            <div class="sub header">that you can easily follow</div>
+        </h1>
+
+    </div>
+    <div class="four wide column">
+        <a href="/recipe/select/" class="ui teal right floated flat button" style="margin-right: 40px;">Customize Your Meal Plan</a>
+    </div>
+
+</div>
+<div class="row">
+    <div class="ui cards">
+        {% for recipe in recipe_list %}
+        <div class="ui card">
+            <div class="content">
+                <div class="header">{{recipe.name}}</div>
+                <div class="description">
+                    <p>{{recipe.text}}</p>
+                </div>
+            </div>
+            <div class="extra content">
+
+                {% for ingredient in recipe.ingredients.all %}
+                <i class="angle right icon"></i>
+                {{ingredient.name}}
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
